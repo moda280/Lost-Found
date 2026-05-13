@@ -29,6 +29,15 @@ const container = document.getElementById("itemsContainer");
 const searchBar = document.getElementById("searchBar");
 const filter = document.getElementById("filter");
 
+// Modal elements
+const modal = document.getElementById("itemModal");
+const modalImage = document.getElementById("modalImage");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const closeModal = document.getElementById("closeModal");
+const claimBtn = document.getElementById("claimBtn");
+
+// Display items
 function displayItems(filteredItems) {
     container.innerHTML = "";
 
@@ -37,7 +46,7 @@ function displayItems(filteredItems) {
         card.classList.add("card");
 
         card.innerHTML = `
-        <img src="${item.image}" alt="${item.name}">
+        <img src="${item.image}">
         <div class="card-content">
           <h3>${item.name}</h3>
           <p>${item.description}</p>
@@ -47,25 +56,45 @@ function displayItems(filteredItems) {
         </div>
       `;
 
+        // Open modal
+        card.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+            modalImage.src = item.image;
+            modalTitle.textContent = item.name;
+            modalDescription.textContent = item.description;
+        });
+
         container.appendChild(card);
     });
 }
 
+// Filter function
 function filterItems() {
     const searchText = searchBar.value.toLowerCase();
     const filterValue = filter.value;
 
     const filtered = items.filter(item => {
-        const matchesSearch = item.name.toLowerCase().includes(searchText);
-        const matchesFilter = filterValue === "all" || item.type === filterValue;
-        return matchesSearch && matchesFilter;
+        return (
+            item.name.toLowerCase().includes(searchText) &&
+            (filterValue === "all" || item.type === filterValue)
+        );
     });
 
     displayItems(filtered);
 }
 
+// Events
 searchBar.addEventListener("input", filterItems);
 filter.addEventListener("change", filterItems);
 
-// Initial display
+closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+});
+
+claimBtn.addEventListener("click", () => {
+    alert("Item claimed!");
+    modal.classList.add("hidden");
+});
+
+// Initial load
 displayItems(items);
