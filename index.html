@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lost & Found</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -24,8 +24,17 @@
         </select>
     </div>
 
-    <div class="container" id="itemsContainer">
-        <!-- Items will be added by JS -->
+    <div class="container" id="itemsContainer"></div>
+
+    <!-- Modal -->
+    <div id="itemModal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <button id="claimBtn">Claim Item</button>
+        </div>
     </div>
 
     <script src="index.js"></script>
