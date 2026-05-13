@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lost & Found</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Lost & Found</h1>
+        <p>Find your lost items or report found ones</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="searchBar" placeholder="Search items...">
+
+        <select id="filter">
+            <option value="all">All</option>
+            <option value="lost">Lost</option>
+            <option value="found">Found</option>
+        </select>
+    </div>
+
+    <div class="container" id="itemsContainer">
+        <!-- Items will be added by JS -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
